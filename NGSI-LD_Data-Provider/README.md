@@ -13,6 +13,7 @@ The environment consists of the following components
 * MySQL (in case Keyrock is used)
 
 as depicted in the following diagram:
+
 ![Components](./img/components.png "Components")
 
 This description provides examples of the [Helm values files](./values) which show the minimum configuration 
@@ -95,7 +96,8 @@ helm install -f ./values/values-umbrella.yml --namespace provider api-umbrella f
 
 When first opening the page (https://umbrella.domain.org/admin), the credentials of the admin user can be set.
 
-Within the Admin UI, create a new API Backend for the Orion Context Broker, as depicted in the following picture.
+Within the Admin UI, create a new API Backend for the Orion Context Broker, as depicted in the following picture:
+
 ![API Umbrella](./img/umbrella.png "API Umbrella")
 
 Additionally configure the backend according to your authentication and authorisation requirements.
