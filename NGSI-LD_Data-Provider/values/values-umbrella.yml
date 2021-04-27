@@ -1,0 +1,90 @@
+# Values for fiware/api-umbrella Helm Chart
+#
+# Chart values file:
+# ref: https://github.com/FIWARE/helm-charts/blob/main/charts/api-umbrella/values.yaml
+#
+
+## ingress configuration for making API Umbrella externally available
+ingress:
+  # -- should there be an ingress to connect API Umbrella with the public internet
+  enabled: true
+  # -- annotations to be added to the ingress
+  annotations: {}
+  # -- all hosts to be provided
+  hosts:
+    - host: umbrella.domain.org
+      paths:
+        - /
+  ## configure the ingress' tls
+  tls:
+    - secretName: umbrella-prod-tls
+      hosts: 
+        - umbrella.domain.org
+
+## Service account (might be necessary on OpenShift)
+#serviceAccount:
+#  create: false
+#  name: <account-name>
+
+# configuration of api umbrella
+umbrella:
+  # -- list services that should be run by api-umbrella. See https://github.com/Profirator/api-umbrella/tree/master/config and
+  # https://api-umbrella.readthedocs.io/en/latest/ for more
+  services:
+    - router
+    - web
+
+  # -- configure the host of the frontend here
+  webHost: umbrella.domain.org
+
+  router: 
+    web_app_host: "umbrella.domain.org"
+
+  # database connection
+  # Pre-req.:
+  mongodb:
+    # -- username to authenticate with. If the user does not exist, admin config is required and a user will be created
+    username: api_umbrella
+    # -- password to authenticate with, if not set, we will create it
+    password: <api-umbrella-password>
+    #password: passwd
+    # -- host of the mongodb
+    #host: i4t-umbrella-mongodb
+    host: mongo-mongodb-0.mongo-mongodb-headless.provider.svc.cluster.local
+    #host: i4t-umbrella-mongodb.i4trust-marketplace.svc.cluster.local
+    # -- port of the mongodb
+    port: 27017
+    # -- name of the database, needs to exist on startup
+    name: api_umbrella
+
+  # -- configuration of the umbrella. See https://github.com/Profirator/api-umbrella/tree/master/config and
+  # https://api-umbrella.readthedocs.io/en/latest/ for more or use the out-commented part as a sane default
+  config:
+    elasticsearch:
+      hosts:
+        - http://elasticsearch-master.provider.svc.cluster.local:9200
+    hosts:
+      - hostname: umbrella.domain.org
+        default: true
+    gatekeeper:
+      # API Key methods
+      # Add entry for fiware-oauth2 in case that Keyrock should be used
+      api_key_methods:
+        #- fiware-oauth2
+        - header
+        - getParam
+      api_key_cache: true
+      # Default IDP (optionally in case that Keyrock is used)
+      #default_idp:
+      #  backend_name: fiware-oauth2
+      #  host: https://keyrock.domain.org
+
+    # Optional configuration in case that an SMTP server has been setup
+    #web:
+    #  mailer:
+    #    smtp_settings:
+    #        address: <smtp-hostname>
+    #        port: 587
+    #        authentication: login
+    #        user_name: SMTP-USER
+    #        password: SMTP-PASS
