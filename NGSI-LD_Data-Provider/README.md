@@ -11,6 +11,7 @@ The environment consists of the following components
 * API Umbrella
 * Keyrock (optional)
 * MySQL (in case Keyrock is used)
+
 as depicted in the following diagram:
 ![Components](./img/components.png "Components")
 
@@ -96,6 +97,7 @@ When first opening the page (https://umbrella.domain.org/admin), the credentials
 
 Within the Admin UI, create a new API Backend for the Orion Context Broker, as depicted in the following picture.
 ![API Umbrella](./img/umbrella.png "API Umbrella")
+
 Additionally configure the backend according to your authentication and authorisation requirements.
 
 
