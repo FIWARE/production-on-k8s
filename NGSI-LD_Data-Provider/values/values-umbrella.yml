@@ -47,11 +47,8 @@ umbrella:
     username: api_umbrella
     # -- password to authenticate with, if not set, we will create it
     password: <api-umbrella-password>
-    #password: passwd
     # -- host of the mongodb
-    #host: i4t-umbrella-mongodb
     host: mongo-mongodb-0.mongo-mongodb-headless.provider.svc.cluster.local
-    #host: i4t-umbrella-mongodb.i4trust-marketplace.svc.cluster.local
     # -- port of the mongodb
     port: 27017
     # -- name of the database, needs to exist on startup
