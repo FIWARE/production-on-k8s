@@ -97,3 +97,18 @@ The deployment of all components will take some time. When the logic proxy compo
 you can access the marketplace UI via the browser (e.g. http://marketplace.domain.org).
 
 Before logging in, you might need to setup some users within Keyrock and assign corresponding roles (e.g. customer or seller).
+
+
+
+## Additional information
+
+### Auth scheme of MongoDB
+
+The Charging Backend of the BAE includes an older MongoDB client which uses an 
+outdated auth schema.
+
+Per default, the MongoDB 3.6 installed with this instructions is not using this 
+older auth schema. In order to change the auth schema after the databases and users 
+have been created, perform the steps in [ChangeMongoDBAuth.md](./ChangeMongoDBAuth.md).
+
+This is required to properly process product orders in the BAE.
