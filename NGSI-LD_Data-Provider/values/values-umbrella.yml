@@ -41,7 +41,6 @@ umbrella:
     web_app_host: "umbrella.domain.org"
 
   # database connection
-  # Pre-req.:
   mongodb:
     # -- username to authenticate with. If the user does not exist, admin config is required and a user will be created
     username: api_umbrella
