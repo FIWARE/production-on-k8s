@@ -26,6 +26,21 @@ route:
 ingress:
   ## should there be an ingress to connect keyrock with the public internet
   enabled: false
+  ## anotations to be added to the ingress
+  annotations:
+    # annotation for microk8s using the built-in ingress addon
+    kubernetes.io/ingress.class: public
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+  ## all hosts to be provided
+  hosts:
+    - host: keyrock.domain.org
+      paths:
+        - /
+  ## configure the ingress' tls
+  tls: []
+    # - secretName: marketplace-keyrock-prod-tls
+      # hosts:
+        # - keyrock.domain.org
 
 ## database configuration for keyrock
 db:
