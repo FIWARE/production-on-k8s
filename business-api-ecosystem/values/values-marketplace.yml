@@ -36,7 +36,7 @@ bizEcosystemApis:
   ## port that the APIs container uses
   port: 8080
 
-  ## Service account (might be necessary on OpenShift)
+  ## Service account (might be necessary on OpenShift; microk8s: only create:true is needed)
   #serviceAccount:
   #  create: false
   #  name: <account-name>
@@ -64,7 +64,7 @@ bizEcosystemRss:
   ## port that the RSS container uses
   port: 8080
 
-  ## Service account (might be necessary on OpenShift)
+  ## Service account (might be necessary on OpenShift; microk8s: only create:true is needed)
   #serviceAccount:
   #  create: false
   #  name: <account-name>
@@ -117,7 +117,7 @@ bizEcosystemChargingBackend:
     ## Paypal Client-Secret
   #  clientSecret: <CLIENT-SECRET>
 
-  ## Service account (might be necessary on OpenShift)
+  ## Service account (might be necessary on OpenShift; microk8s: only create:true is needed)
   #serviceAccount:
   #  create: false
   #  name: <account-name>
@@ -184,7 +184,7 @@ bizEcosystemLogicProxy:
     #  Files will be copied to /themes/{{name}} with the PVC mounted at /themes
     sourcePath: /bae-theme
 
-  ## Service account (might be necessary on OpenShift)
+  ## Service account (might be necessary on OpenShift; microk8s: only create:true is needed)
   #serviceAccount:
   #  create: false
   #  name: <account-name>
