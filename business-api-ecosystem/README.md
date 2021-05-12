@@ -90,8 +90,15 @@ and theme deployment in the logic proxy. An example of how to build an image for
 found [here](https://github.com/i4Trust/bae-i4trust-theme).
 ```shell
 # Deploy BAE
-helm install -f ./values/values-marketplace.yml --namespace marketplace business-api-ecosystem fiware/business-api-ecosystem
+helm install -f ./values/values-marketplace.yml --namespace marketplace bae fiware/business-api-ecosystem
 ```
+
+---
+**NOTE**
+
+In order to avoid conflicts with too long container names (max. 63 characters), a short release name should be chosen.
+
+---
 
 The deployment of all components will take some time. When the logic proxy component has been deployed and changed to the running state, 
 you can access the marketplace UI via the browser (e.g. http://marketplace.domain.org).
