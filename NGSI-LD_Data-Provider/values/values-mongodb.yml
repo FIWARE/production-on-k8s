@@ -46,6 +46,33 @@ auth:
   ##
   rootPassword: "<root-password>"
 
+## initdb scripts
+## Specify dictionary of scripts to be run at first boot
+##
+## This creates the required database and user for API Umbrella.
+## Make sure to set the DB user configuration and database
+## for the API Umbrella deployment.
+##
+## If you omit the creation of database and user during deployment, make sure
+## to create this database and user afterwards manually before proceeding with the
+## API Umbrella deployment.
+##
+initdbScripts:
+  init_db.js: |
+    // Setup DB for API Umbrella
+    db = db.getSiblingDB('api_umbrella');
+    db.createUser(
+    {
+      user: "api_umbrella",
+      pwd: "api-umbrella-password",
+      roles: [
+        {
+          role: "readWrite",
+          db: "api_umbrella"
+        }
+      ]
+    });
+
 tls:
   ## Enable or disable MongoDB TLS Support
   enabled: false

@@ -24,7 +24,8 @@ The helm charts of the FIWARE Generic enablers with all possible configuration v
 * [API Umbrella](https://github.com/FIWARE/helm-charts/tree/main/charts/api-umbrella)
 * [Keyrock](https://github.com/FIWARE/helm-charts/tree/main/charts/keyrock)
 
-We will assume that all components will be deployed within the namespace `provider`.
+In the following we will assume that all components will be deployed within the namespace `provider`. Change the name 
+according to your needs.
 ```shell
 kubectl create ns provider
 ```
@@ -39,7 +40,7 @@ then deploy `mongodb`:
 ```shell
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
-helm install -f ./values/values-mongodb.yml --namespace provider mongodb bitnami/mongodb
+helm install -f ./values/values-mongodb.yml --namespace provider mongodb bitnami/mongodb --version 10.0.5
 ```
 
 
@@ -72,7 +73,9 @@ API Umbrella is used as Policy Enforcement Point, and can be also used as Policy
 In case that Keyrock should take over the decisions, instances of a MySQL database and Keyrock need to be additionally 
 deployed, as shown in the next paragraphs.
 
-First create the necessary database and user within the MongoDB. This requires to enter a shell within the 
+During deployment of the MongoDB using the provided values file, a database should have been created for API Umbrella. 
+In case this was removed from the values file, it is needed to create the necessary database and user within the MongoDB 
+manually. This requires to enter a shell within the 
 MongoDB pod, starting the MongoDB client and perform the commands below for creating the user.
 ```shell
 # Enter pod
@@ -87,7 +90,8 @@ mongo -u root     # (provide MongoDB root PW)
 ```
 
 Now modify the [API Umbrella values file](./values/values-umbrella.yml) according to your setup and perform 
-the deployment using Helm.
+the deployment using Helm. Check that in the database configuration, you provide the same password for the 
+database user as has been used when creating the MongoDB database and user.
 ```shell
 helm repo add fiware https://fiware.github.io/helm-charts/
 helm repo update
