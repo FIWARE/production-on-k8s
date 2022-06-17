@@ -46,7 +46,7 @@ helm install -f ./values/values-elastic.yml --namespace marketplace elasticsearc
 helm install -f ./values/values-mysql.yml --namespace marketplace mysql t3n/mysql --version 0.1.0
 
 # Deploy MongoDB
-helm install -f ./values/values-mongodb.yml --namespace marketplace mongodb bitnami/mongodb --version 10.0.5
+helm install -f ./values/values-mongodb.yml --namespace marketplace mongodb bitnami/mongodb --version 10.30.12
 ```
 
 
